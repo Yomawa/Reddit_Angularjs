@@ -50,14 +50,19 @@ app.controller("FirtController", function($scope, $filter) {
         $scope.isPositiveNegative = "red";
       }
     };
+    
     app.controller("CommentController", function($scope){
+      $scope.comments = [{author:"Maja", text:"dfdf"}];
+      $scope.newComment = {author:"", text:""};
+      $scope.addComment = function (newComment){
+        $scope.comments.push(newComment);
+      };
       $scope.commentForm = false;
       $scope.toggleForm = function() {
         //debugger
       $scope.commentForm = !$scope.commentForm;
     
-    
-  };
+      };
     });
 });
 

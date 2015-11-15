@@ -135,13 +135,17 @@
 
            <span class="glyphicon glyphicon-pencil" ng-click="toggleForm()">Add Comment</span>  
            <div ng-show="commentForm==true" ng-controller="CommentController">
-              <form name="commentForm">
+              <form name="commentForm" ng-submit="addComment(newComment)">
                 <label for="author"></label>
-                <input text="author" id="author" name="author" ng-model="">
+                <input text="author" id="author" name="author" ng-model="newComment.author">
                 <label for="text"></label>
-                <input text="text" id="text" name="text" ng-model="">
+                <input text="text" id="text" name="text" ng-model="newComment.text">
                 <input type="submit" value="Add Comment" id="submit">
               </form>
+              <div>
+                {{comment.author}}
+                {{comment.text}}
+              </div>
            </div>
           </div>
         </div>
