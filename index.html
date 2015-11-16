@@ -119,8 +119,9 @@
             <div class="col-md-9">
               <h4>{{post.title}} | 
               <span class="glyphicon glyphicon-arrow-up" ng-click="increaseVote(post)"></span>
-              <span class="glyphicon glyphicon-arrow-down" ng-click="downVote(post)"></span> 
-              <span ng-class="{positive: post.isPositiveNegative=='green', regular: post.isPositiveNegative == null, negative: post.isPositiveNegative=='red'}">{{post.vote}}</span></h4>
+              <span class="glyphicon glyphicon-arrow-down" ng-click="downVote(post)"></span>
+              <!-- <span class="glyphicon glyphicon-arrow-down" ng-click="zeroVote(post)"></span> --> 
+              <span ng-class="{positive: post.isPositiveNegative=='green', regular: post.isPositiveNegative == 0, negative: post.isPositiveNegative=='red'}">{{post.vote}}</span></h4>
             </div>
           </div>
           <!-- AUTHOR NAME -->
