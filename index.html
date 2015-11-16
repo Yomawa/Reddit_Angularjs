@@ -25,8 +25,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- DOUBLE CHECK DO YOU NEED THIS FOR FORM TO SHOW ng-keypress="toggleFormKey($event)" ng-cloak
- --><div ng-controller="FirtController">
+<div ng-controller="FirtController">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +43,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <!-- TO DO: DO NOT FORGET -> FIX TOGGLE FORM -->
-          <li ng-click="toggleForm()"><a > <span class="glyphicon glyphicon-plus"></span>Submit Post</a></li>
+          <li ng-click="showForm()"><a > <span class="glyphicon glyphicon-plus"></span>Submit Post</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -65,48 +64,50 @@
     </div><!-- /.container-fluid -->
   </nav>
 <!-- FORM - CREATING A POST -->
-  <div class = "form-group col-md-10 col-md-offset-1"><!-- ng-show="postForm" -->
-    <form action="javascript:void(0)" name="postForm" ng-submit="addPost(newPost)" novalidate>
+  <div class = "form-group col-md-10 col-md-offset-1" >
+    <div class="row" ng-show="formVisible">
+      <form action="javascript:void(0)" name="postForm" ng-submit="addPost(newPost)" novalidate>
 
-      <div class="form-group" ng-class="{'has-success': postForm.title.$valid && !postForm.title.$pristine, 'has-error': !postForm.title.$valid && !postForm.title.$pristine}">
-        <!-- TITLE -->
-        <label class="control-label" for="title">Title</label>
-        {{postForm.title.$valid}}
-        <input class="form-control" type="text" name="title" id="title" ng-model="newPost.title" ng-required="true">
-        <div>
-          <p class="text-danger" ng-show="postForm.title.$invalid && !postForm.title.$pristine">please enter a title</p>
+        <div class="form-group" ng-class="{'has-success': postForm.title.$valid && !postForm.title.$pristine, 'has-error': !postForm.title.$valid && !postForm.title.$pristine}">
+          <!-- TITLE -->
+          <label class="control-label" for="title">Title</label>
+          {{postForm.title.$valid}}
+          <input class="form-control" type="text" name="title" id="title" ng-model="newPost.title" ng-required="true">
+          <div>
+            <p class="text-danger" ng-show="postForm.title.$invalid && !postForm.title.$pristine">please enter a title</p>
+          </div>
         </div>
-      </div>
-      <!-- AUTHOR -->
-      <div class="form-group" ng-class="{'has-success': postForm.author.$valid && !postForm.author.$pristine, 'has-error': !postForm.author.$valid && !postForm.author.$pristine}">
-        <label class="control-label" for="author">Author</label>
-        {{postForm.author.$valid}}
-        <input class="form-control" type="text" name="author" id="author" ng-model="newPost.author" ng-required="true">
-        <div>
-          <p class="text-danger" ng-show="postForm.author.$invalid && !postForm.author.$pristine">please enter a author</p>
+        <!-- AUTHOR -->
+        <div class="form-group" ng-class="{'has-success': postForm.author.$valid && !postForm.author.$pristine, 'has-error': !postForm.author.$valid && !postForm.author.$pristine}">
+          <label class="control-label" for="author">Author</label>
+          {{postForm.author.$valid}}
+          <input class="form-control" type="text" name="author" id="author" ng-model="newPost.author" ng-required="true">
+          <div>
+            <p class="text-danger" ng-show="postForm.author.$invalid && !postForm.author.$pristine">please enter a author</p>
+          </div>
         </div>
-      </div>
-      <!-- IMAGE -->
-      <div lass="form-group" ng-class="{'has-success': postForm.image.$valid && !postForm.image.$pristine, 'has-error': !postForm.image.$valid && !postForm.image.$pristine}">
-        <label class="control-label" for="image">Image</label>
-        {{postForm.image.$valid}}
-        <input class="form-control" type="text" name="image" id="image" ng-model="newPost.image" ng-required="true">
-        <div>
-          <p class="text-danger" ng-show="postForm.image.$invalid && !postForm.image.$pristine">please enter a image</p>
+        <!-- IMAGE -->
+        <div lass="form-group" ng-class="{'has-success': postForm.image.$valid && !postForm.image.$pristine, 'has-error': !postForm.image.$valid && !postForm.image.$pristine}">
+          <label class="control-label" for="image">Image</label>
+          {{postForm.image.$valid}}
+          <input class="form-control" type="text" name="image" id="image" ng-model="newPost.image" ng-required="true">
+          <div>
+            <p class="text-danger" ng-show="postForm.image.$invalid && !postForm.image.$pristine">please enter a image</p>
+          </div>
         </div>
-      </div>
-      <!-- DESCRIPTION -->
-      <div class="form-group" ng-class="{'has-success': postForm.description.$valid && !postForm.description.$pristine, 'has-error' :!postForm.description.$valid && !postForm.description.$pristine}">
-        <label class="control-label" for="description">Description</label>
-        {{postForm.description.$valid}}
-        <input class="form-control" name="description" text="description" id="description" ng-model="newPost.description" ng-required="true">
-        <div>
-          <p class="text-danger" ng-show="postForm.description.$invalid && !postForm.description.$pristine">please enter a description</p>
+        <!-- DESCRIPTION -->
+        <div class="form-group" ng-class="{'has-success': postForm.description.$valid && !postForm.description.$pristine, 'has-error' :!postForm.description.$valid && !postForm.description.$pristine}">
+          <label class="control-label" for="description">Description</label>
+          {{postForm.description.$valid}}
+          <input class="form-control" name="description" text="description" id="description" ng-model="newPost.description" ng-required="true">
+          <div>
+            <p class="text-danger" ng-show="postForm.description.$invalid && !postForm.description.$pristine">please enter a description</p>
+          </div>
         </div>
-      </div>
- <!--  BUTTON -->
-        <input type="submit" id="submit" value="submit" class="btn btn-primary">
-    </form>
+   <!--  BUTTON -->
+          <input type="submit" id="submit" value="submit" class="btn btn-primary">
+      </form>
+    </div>
     <div ng-repeat="post in posts track by $index" class="jumbotron col-md-12">
       <!-- IMAGE -->
       <div class="row">
@@ -134,7 +135,7 @@
            <span class="glyphicon glyphicon-calendar"></span> {{date | date:'medium'}}&nbsp | &nbsp   <span class="glyphicon glyphicon-comment"></span> comment &nbsp | &nbsp 
 
            <span class="glyphicon glyphicon-pencil" ng-click="toggleForm()">Add Comment</span>  
-           <div ng-show="commentForm==true" ng-controller="CommentController">
+           <div ng-show="commentForm==true" >
               <form name="commentForm" ng-submit="addComment(newComment)">
                 <label for="author"></label>
                 <input text="author" id="author" name="author" ng-model="newComment.author">
@@ -154,22 +155,6 @@
     </div>
   </div>
 </div><!-- ending div with controler First-->
-
-
-<!-- // <div ng-app="">
-//   <h1>Ng-show & ng-hide</h1>
-//   <p class="description">Click on the "show"-link to see the content.</p>
-//   <a href="" ng-click="showme=true">Show</a>
-//   <button ng-click="showme=false">Hide</button> 
-  
-//   <div class="wrapper">
-//     <p ng-hide="showme">It will appear here!</p>
-//     <h2 ng-show="showme">This is mah content, yo!</h2>
-//   </div>
-  
-// </div>  -->
-  
-  
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
   <script src="./app.js"></script>

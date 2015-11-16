@@ -5,34 +5,18 @@ app.controller("FirtController", function($scope, $filter) {
   $scope.isPositiveNegative = null;
   $scope.posts = [{title:"Yosemite", author:"Ivana", image:"", description:"Yosemite Park is awesome"}];
   $scope.newPost = {title:"", author:"", image:"", description:""};
+  $scope.formVisible = false;
   $scope.addPost = function(newPost){
     $scope.posts.push(newPost);
     $scope.newPost={};
+    //show form
+    $scope.formVisible = !$scope.formVisible;
     $scope.postForm.$setPristine();
   };
-  //TOGGLE FORM
-  // $scope.postForm = false;
-  //  $scope.toggleForm = function() {
-  //   $scope.postForm = !$scope.postForm;
-  //   $timeout(function() {
-  //     var title = $window.document.getElementById('title');
-  //     if (title) {
-  //       title.focus();
-  //     }
-  //     var author = $window.document.getElementById('author');
-  //     if (author) {
-  //       author.focus();
-  //     }
-  //     var image = $window.document.getElementById('image');
-  //     if (image) {
-  //       image.focus();
-  //     }
-  //     var description = $window.document.getElementById('description');
-  //     if (description) {
-  //       description.focus();
-  //     }
-  //   });
-  // };
+   $scope.showForm = function(){
+      $scope.formVisible = !$scope.formVisible;
+    };
+  
    $scope.increaseVote = function(){
       // debugger 
     $scope.vote +=1;
@@ -51,19 +35,19 @@ app.controller("FirtController", function($scope, $filter) {
       }
     };
     
-    app.controller("CommentController", function($scope){
-      $scope.comments = [{author:"Maja", text:"dfdf"}];
-      $scope.newComment = {author:"", text:""};
-      $scope.addComment = function (newComment){
-        $scope.comments.push(newComment);
-      };
-      $scope.commentForm = false;
-      $scope.toggleForm = function() {
-        //debugger
-      $scope.commentForm = !$scope.commentForm;
+    // app.controller("CommentController", function($scope){
+    //   $scope.comments = [{author:"Maja", text:"dfdf"}];
+    //   $scope.newComment = {author:"", text:""};
+    //   $scope.addComment = function (newComment){
+    //     $scope.comments.push(newComment);
+    //   };
+    //   $scope.commentForm = false;
+    //   $scope.toggleForm = function() {
+    //     //debugger
+    //   $scope.commentForm = !$scope.commentForm;
     
-      };
-    });
+    //   };
+    // });
 });
 
    
