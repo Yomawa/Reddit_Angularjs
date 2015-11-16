@@ -42,7 +42,6 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <!-- TO DO: DO NOT FORGET -> FIX TOGGLE FORM -->
           <li ng-click="showForm()"><a > <span class="glyphicon glyphicon-plus"></span>Submit Post</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
@@ -119,9 +118,9 @@
           <div class="row">
             <div class="col-md-9">
               <h4>{{post.title}} | 
-              <span class="glyphicon glyphicon-arrow-up" ng-click="increaseVote()"></span>
-              <span class="glyphicon glyphicon-arrow-down" ng-click="downVote()"></span> 
-              <span ng-class="{positive: isPositiveNegative=='green', regular: isPositiveNegative == null, negative: isPositiveNegative=='red'}">{{vote}}</span></h4>
+              <span class="glyphicon glyphicon-arrow-up" ng-click="increaseVote(post)"></span>
+              <span class="glyphicon glyphicon-arrow-down" ng-click="downVote(post)"></span> 
+              <span ng-class="{positive: post.isPositiveNegative=='green', regular: post.isPositiveNegative == null, negative: post.isPositiveNegative=='red'}">{{post.vote}}</span></h4>
             </div>
           </div>
           <!-- AUTHOR NAME -->
@@ -131,11 +130,11 @@
           <div class="row">
             <h6>{{post.description}}</h6>
           </div>
-          <div class="row">
+          <div class="row" ><!-- ng-controller="CommentController" -->
            <span class="glyphicon glyphicon-calendar"></span> {{date | date:'medium'}}&nbsp | &nbsp   <span class="glyphicon glyphicon-comment"></span> comment &nbsp | &nbsp 
-
-           <span class="glyphicon glyphicon-pencil" ng-click="toggleForm()">Add Comment</span>  
-           <div ng-show="commentForm==true" >
+            
+           <span class="glyphicon glyphicon-pencil" ng-click="showCommentForm()">Add Comment</span>  
+           <div class="row" ng-show="formCommentVisible">
               <form name="commentForm" ng-submit="addComment(newComment)">
                 <label for="author"></label>
                 <input text="author" id="author" name="author" ng-model="newComment.author">
