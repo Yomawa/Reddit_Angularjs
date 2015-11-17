@@ -120,7 +120,6 @@
               <h4>{{post.title}} | 
               <span class="glyphicon glyphicon-arrow-up" ng-click="increaseVote(post)"></span>
               <span class="glyphicon glyphicon-arrow-down" ng-click="downVote(post)"></span>
-              <!-- <span class="glyphicon glyphicon-arrow-down" ng-click="zeroVote(post)"></span> --> 
               <span ng-class="{positive: post.isPositiveNegative=='green', regular: post.isPositiveNegative == 0, negative: post.isPositiveNegative=='red'}">{{post.vote}}</span></h4>
             </div>
           </div>
@@ -131,23 +130,28 @@
           <div class="row">
             <h6>{{post.description}}</h6>
           </div>
+          <!-- COMMENTS -->
           <div class="row" ><!-- ng-controller="CommentController" -->
-           <span class="glyphicon glyphicon-calendar"></span> {{date | date:'medium'}}&nbsp | &nbsp   <span class="glyphicon glyphicon-comment"></span> comment &nbsp | &nbsp 
+           <span class="glyphicon glyphicon-calendar"></span> {{post.date| date:'medium'}}&nbsp | &nbsp   <span ng-click="showComments(post)"><span class="glyphicon glyphicon-comment"></span> 
+                     <!--  add pluralization -->
+                     <ng-pluralize count="post.commentCount" when="{'1': '1 comment', 'other': '{{post.commentCount}} comments'}">
+                     </ng-pluralize></span>
+           &nbsp | &nbsp 
             
-           <span class="glyphicon glyphicon-pencil" ng-click="showCommentForm()">Add Comment</span>  
-           <div class="row" ng-show="formCommentVisible">
-              <form name="commentForm" ng-submit="addComment(newComment)">
+           <span class="glyphicon glyphicon-pencil"  ng-click="showCommentForm(post)">Add Comment</span>  
+           <div class="row" ng-show="post.formCommentVisible">
+              <form name="commentForm" ng-submit="addComment(post)">
+              <!-- {{post.formCommentVisible}} -->
                 <label for="author"></label>
-                <input text="author" id="author" name="author" ng-model="newComment.author">
+                <input text="author" id="author" name="author" ng-model="post.newComment.author">
                 <label for="text"></label>
-                <input text="text" id="text" name="text" ng-model="newComment.text">
+                <input text="text" id="text" name="text" ng-model="post.newComment.text">
                 <input type="submit" value="Add Comment" id="submit">
               </form>
-              <div>
-                {{comment.author}}
-                {{comment.text}}
-              </div>
            </div>
+              <div ng-repeat="comment in post.comments" ng-show="post.formComments">
+                <h5>{{comment.author}} - {{comment.text}}</h5> 
+              </div>
           </div>
         </div>
       </div><!-- done row -->
