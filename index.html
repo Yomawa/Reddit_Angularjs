@@ -53,16 +53,18 @@
               <li><a href="#">Title</a></li>
             </ul>
           </li> -->
-          <select name="singleSelect" id="singleSelect" ng-model="post.option">
-            <option value="author">Author</option> 
-            <option value="date">Date</option>
-            <option value="title">Title</option>
-          </select>
+          <li>
+            <select name="singleSelect" id="singleSelect" ng-model="post.option">
+              <option value="author">Author</option> 
+              <option value="date">Date</option>
+              <option value="title">Title</option>
+            </select>
+          </li>
           
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
           </div>
         </form>
       </div><!-- /.navbar-collapse -->
@@ -113,7 +115,7 @@
           <input type="submit" id="submit" value="submit" class="btn btn-primary">
       </form>
     </div>
-    <div ng-repeat="post in posts | orderBy: post.option" class="jumbotron col-md-12">
+    <div ng-repeat="post in posts | filter:searchText | orderBy: post.option" class="jumbotron col-md-12">
       <!-- IMAGE -->
       <div class="row">
         <div class="col-md-3">
