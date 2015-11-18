@@ -117,6 +117,7 @@
         </div>
    <!--  BUTTON -->
           <input type="submit" id="submit" value="submit" class="btn btn-primary">
+          <!-- one of options: ng-disabled="postForm.$invalid" -->
       </form>
     </div>
     <div ng-repeat="post in posts | filter:searchText | orderBy: post.option" class="jumbotron col-md-12">

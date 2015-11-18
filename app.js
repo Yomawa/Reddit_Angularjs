@@ -14,6 +14,7 @@ app.controller("FirtController", function($scope, $filter) {
     //since i hard coded taht every post's vote starts at 0, i have to snik in here a newPost.vote =0
     //we do not have to use scope $ bc newPost i parametar and view when comunicates with controler doesn't need $scope
     //before you were having $scope.post.date = new Data(); and it was applaying everywhere but you jsut want when you creat a new post inside of fucnction
+    if ($scope.postForm.$valid){
     newPost.date = new Date();
     //newPost.comments has to be assigen to an empty []
     newPost.vote = 0;
@@ -27,6 +28,15 @@ app.controller("FirtController", function($scope, $filter) {
     //show form
     $scope.formVisible = !$scope.formVisible;
     $scope.postForm.$setPristine();
+    }
+    else{
+      //debugger
+      $scope.postForm.title.$setDirty();
+      $scope.postForm.author.$setDirty();
+      $scope.postForm.image.$setDirty();
+      $scope.postForm.description.$setDirty();
+      $scope.postForm.$setDirty();
+    }
   };
    $scope.showForm = function(){
       $scope.formVisible = !$scope.formVisible;
