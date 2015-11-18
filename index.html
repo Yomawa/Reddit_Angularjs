@@ -53,13 +53,16 @@
               <li><a href="#">Title</a></li>
             </ul>
           </li> -->
+         
           <li>
             <select name="singleSelect" id="singleSelect" ng-model="post.option">
+            <option value="">---Sort by---</option> 
               <option value="author">Author</option> 
               <option value="date">Date</option>
               <option value="title">Title</option>
             </select>
           </li>
+        
           
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -139,7 +142,7 @@
             <h6>{{post.description}}</h6>
           </div>
           <!-- COMMENTS -->
-          <div class="row" ><!-- ng-controller="CommentController" -->
+          <div class="row" >
            <span class="glyphicon glyphicon-calendar"></span> {{post.date| date:'medium'}}&nbsp | &nbsp   <span ng-click="showComments(post)"><span class="glyphicon glyphicon-comment"></span> 
                      <!--  add pluralization -->
                      <ng-pluralize count="post.commentCount" when="{'1': '1 comment', 'other': '{{post.commentCount}} comments'}">
@@ -147,15 +150,17 @@
            &nbsp | &nbsp 
             
            <span class="glyphicon glyphicon-pencil"  ng-click="showCommentForm(post)">Add Comment</span>  
+          <!--  I TRYED TO INCLUDE ng-show="post.formComments" IN THIS DIV ???what's the best practice to show comment once the coment is created -->
            <div class="row" ng-show="post.formCommentVisible">
               <form name="commentForm" ng-submit="addComment(post)">
               <!-- {{post.formCommentVisible}} -->
-                <label for="author"></label>
+                <label for="author">Author</label>
                 <input text="author" id="author" name="author" ng-model="post.newComment.author">
-                <label for="text"></label>
+                <label for="text">Text</label>
                 <input text="text" id="text" name="text" ng-model="post.newComment.text">
-                <input type="submit" value="Add Comment" id="submit">
-              </form>
+               <!--  trying ng-click="showComments(post)" you can have it here but you do not have to -->
+                <input type="submit" value="Add Comment" id="submit" >
+              </form><!-- ng-click="showComments(post)" do not use it here-->
            </div>
               <div ng-repeat="comment in post.comments" ng-show="post.formComments">
                 <h5>{{comment.author}} - {{comment.text}}</h5> 
