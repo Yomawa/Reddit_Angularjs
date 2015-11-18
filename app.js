@@ -75,7 +75,7 @@ app.controller("FirtController", function($scope, $filter) {
       
       $scope.showCommentForm = function(post){
         //debugger
-        post.formComments=false;
+        post.formComments=false;//it works with out as well
         post.formCommentVisible = !post.formCommentVisible;
       //post.formComments = !post.formComments;  
       };
